@@ -4,7 +4,7 @@
   "description": "Fullstack Open 2021 Blog exercises",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --verbose",
     "dev": "nodemon index.js"
   },
   "author": "Koh Jun Jie",
@@ -16,6 +16,10 @@
     "mongoose": "^6.0.12"
   },
   "devDependencies": {
+    "jest": "^27.3.1",
     "nodemon": "^2.0.14"
-  }
+  },
+	"jest": {
+		"testEnvironment": "node"
+	}
 }
