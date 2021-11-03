@@ -5,7 +5,9 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const logger = require('./utils/logger')
 const config = require('./utils/config')
+const Blog = require('./models/blog')
 
+/*
 const blogSchema = new mongoose.Schema({
 	title: String,
 	author: String,
@@ -14,6 +16,7 @@ const blogSchema = new mongoose.Schema({
 })
 
 const Blog = mongoose.model('Blog', blogSchema)
+*/
 
 const mongoUrl = 'mongodb+srv://admin:fullstackopen2021@mycluster.xnorb.mongodb.net/favorite?retryWrites=true&w=majority'
 mongoose.connect(mongoUrl)
