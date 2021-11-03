@@ -1,0 +1,11 @@
+{
+  "name": "fullstackopen-blog-backend",
+  "version": "1.0.0",
+  "description": "Fullstack Open 2021 Blog exercises",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Koh Jun Jie",
+  "license": "MIT"
+}
