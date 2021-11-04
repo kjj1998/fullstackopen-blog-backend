@@ -9,18 +9,18 @@ blogsRouter.get('/', async (request, response, next) => {
 	} catch(exception) {
 		next(exception)
 	}
-	
+
 })
 
-blogsRouter.post('/', (request, response, next) => {
-  const blog = new Blog(request.body)
-
-	blog
-		.save()
-		.then(result => {
-				response.status(201).json(result)
-		})
-		.catch(error => next(error))
+blogsRouter.post('/', async (request, response, next) => {
+  
+	try {
+		const blog = new Blog(request.body)
+		const result = await blog.save()
+		response.status(201).json(result)
+	} catch(exception) {
+		next(exception)
+	}
 })
 
 module.exports = blogsRouter
