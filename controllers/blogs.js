@@ -13,18 +13,9 @@ blogsRouter.get('/', async (request, response, next) => {
 	}
 })
 
-const getTokenFrom = request => {
-	const authorization = request.get('authorization')
-	if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
-		return authorization.substring(7)
-	}
-	return null
-}
-
 blogsRouter.post('/', async (request, response, next) => {
 	try {
 		const body = request.body
-		// const token = getTokenFrom(request)
 		const decodedToken = jwt.verify(request.token, process.env.SECRET)
 		if (!decodedToken || !decodedToken.id) {
 			return response.status(401).json({ error: 'token missing or invalid' })
@@ -52,7 +43,19 @@ blogsRouter.post('/', async (request, response, next) => {
 
 blogsRouter.delete('/:id', async (request, response, next) => {
 	try {
-		await Blog.findByIdAndRemove(request.params.id)
+
+		const decodedToken = jwt.verify(request.token, process.env.SECRET)
+		if (!decodedToken || !decodedToken.id) {
+			return response.status(401).json({ error: 'token missing or invalid' })
+		}
+		const blog = await Blog.findById(request.params.id)
+
+		if (blog.user.toString() === decodedToken.id.toString()) {
+			await Blog.findByIdAndDelete(params.request.id)
+		} else {
+			return response.status(401).json({ error: 'wrong user' })
+		}
+
 		response.status(204).end()
 	} catch(exception) {
 		next(exception)

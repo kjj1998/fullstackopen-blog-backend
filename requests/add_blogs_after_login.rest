@@ -1,6 +1,6 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Impqa29oIiwiaWQiOiI2MTg3OTg5YzUxMGM1NjUwMjM5ZWViMWMiLCJpYXQiOjE2MzYyOTM5NDV9.RxC5RfRsmIqpCX9vevCtdwUXI7NVicZ_bnJDNGnBqbU
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Impqa29oIiwiaWQiOiI2MTg3OTg5YzUxMGM1NjUwMjM5ZWViMWMiLCJpYXQiOjE2MzYyOTgzMDF9.xKdCBcreoRX-sN1sU8DYECjiPkTUWKLwQaHpENchz4o
 
 {
 	"title": "This Blog was added using tokens middleware",
