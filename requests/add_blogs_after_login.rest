@@ -1,10 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Impqa29oIiwiaWQiOiI2MTg3OTg5YzUxMGM1NjUwMjM5ZWViMWMiLCJpYXQiOjE2MzYyOTgzMDF9.xKdCBcreoRX-sN1sU8DYECjiPkTUWKLwQaHpENchz4o
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Impqa29oIiwiaWQiOiI2MTg3OTg5YzUxMGM1NjUwMjM5ZWViMWMiLCJpYXQiOjE2MzYzNTM5NzZ9.36KC9Wh_uU4DjX0CAg8eEDnv1iIs4BaRwfBNqmdgMBo
 
 {
-	"title": "This Blog was added using tokens middleware",
-	"author": "TokenMiddlewareBlogger",
-	"url": "tokenmiddlewareblog.com",
-	"likes": 19
+	"title": "This Blog was added using tokens and users middleware",
+	"author": "TokenUserMiddlewareBlogger",
+	"url": "tokenusermiddlewareblog.com",
+	"likes": 29
 }
