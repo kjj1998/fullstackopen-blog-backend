@@ -12,6 +12,8 @@ beforeEach(async () => {
 	await User.deleteMany({})
 	const passwordHash = await bcrypt.hash('secret', 10)
 	const user = new User({ username: 'root', passwordHash })
+	const blogIds = helper.initialBlogs.map(blog => mongoose.Types.ObjectId(blog._id))
+	user.blogs = blogIds
 	await user.save()
 
 	const blogsToBeAdded = helper.initialBlogs.map(blog =>  {
@@ -128,7 +130,7 @@ describe('properties are all there', () => {
 	
 		expect(newlyAddedBlog.likes).toBe(0)
 	})
-	test('if the title and url properties are missing from the request data, responds with status code 400 Bad Request', async () => {
+	test.only('if the title and url properties are missing from the request data, responds with status code 400 Bad Request', async () => {
 		const newBlog = { 
 			author: 'John Doe', 
 			likes: 21 
@@ -143,7 +145,7 @@ describe('properties are all there', () => {
 })
 
 describe('deletion of a blog', () => {
-	test('succeeds with status code 204 if id is valid', async () => {
+	test.only('succeeds with status code 204 if id is valid', async () => {
     const blogsAtStart = await helper.blogsInDb()
     const blogToDelete = blogsAtStart[0]
 

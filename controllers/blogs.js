@@ -3,7 +3,6 @@ const Blog = require('../models/blog')
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const middleware = require('../utils/middleware')
-const { deleteModel } = require('mongoose')
 
 blogsRouter.get('/', async (request, response, next) => {
 	try {
@@ -18,6 +17,10 @@ blogsRouter.post('/', middleware.userExtractor, async (request, response, next) 
 	try {
 		const body = request.body
 		const user = request.user
+
+		if (!body.url || !body.title) {
+			return response.status(400).send({ error: 'title or url missing ' })
+		}
 
 		const blog = new Blog({
 			title: body.title,
@@ -37,20 +40,25 @@ blogsRouter.post('/', middleware.userExtractor, async (request, response, next) 
 	}
 })
 
-blogsRouter.delete('/:id', async (request, response, next) => {
+blogsRouter.delete('/:id', middleware.userExtractor, async (request, response, next) => {
 	try {
+		
 		const decodedToken = jwt.verify(request.token, process.env.SECRET)
 		if (!decodedToken || !decodedToken.id) {
 			return response.status(401).json({ error: 'token missing or invalid' })
 		}
+		
 		const blog = await Blog.findById(request.params.id)
-
-		if (blog.user.toString() === decodedToken.id.toString()) {
-			await Blog.findByIdAndDelete(request.params.id)
-		} else {
-			return response.status(401).json({ error: 'wrong user' })
+		const user = await User.findById(decodedToken.id)
+		
+		if (blog.user.toString() !== user._id.toString()) {
+			return response.status(401).json({ error: 'only the creator can delete blogs' })
 		}
 
+		await Blog.findByIdAndDelete(request.params.id)
+		user.blogs = user.blogs.filter(b => b.toString() !== request.params.id)
+		await user.save()
+		
 		response.status(204).end()
 	} catch(exception) {
 		next(exception)
