@@ -42,7 +42,8 @@ const blogs = [
 		author: "Michael Chan",
 		url: "https://reactpatterns.com/",
 		likes: 7,
-		__v: 0
+		__v: 0,
+		user: "6188df204765b7c9be738188"
 	},
 	{
 		_id: "5a422aa71b54a676234d17f8",
