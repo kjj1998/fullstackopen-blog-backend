@@ -144,8 +144,8 @@ describe('properties are all there', () => {
 	})
 })
 
-describe('deletion of a blog', () => {
-	test.only('succeeds with status code 204 if id is valid', async () => {
+describe.only('deletion of a blog', () => {
+	test('succeeds with status code 204 if id is valid', async () => {
     const blogsAtStart = await helper.blogsInDb()
     const blogToDelete = blogsAtStart[0]
 

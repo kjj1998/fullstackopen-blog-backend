@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+/* mongoose schema for the blog */
 const blogSchema = new mongoose.Schema({
 	title: {
 		type: String,
@@ -23,6 +24,7 @@ const blogSchema = new mongoose.Schema({
 	}
 })
 
+/* Transform data retrieved from the db*/
 blogSchema.set('toJSON', {
 	transform: (document, returnedObject) => {
 		returnedObject.id = returnedObject._id.toString()
